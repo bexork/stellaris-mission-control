@@ -1,23 +1,15 @@
 {
-  "name": "@starkeeper/StellarisMissionControl",
+  "name": "@starkeeper/stellaris-mission-control",
   "version": "0.0.1",
   "description": "monitor stellaris for errors to help mod developers and mod pack integrators",
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "run": "node index.js"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "bexork",
+  "license": "MIT",
   "dependencies": {
     "sqlite3": "^5.0.2"
-  },
-  "devDependencies": {
-    "eslint": "^7.30.0",
-    "eslint-config-airbnb": "^18.2.1",
-    "eslint-plugin-import": "^2.23.4",
-    "eslint-plugin-jsx-a11y": "^6.4.1",
-    "eslint-plugin-react": "^7.24.0",
-    "eslint-plugin-react-hooks": "^4.2.0"
   }
 }
