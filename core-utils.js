@@ -1,11 +1,61 @@
 import fs from 'fs';
 import path from 'path';
 
+export const logError = (message, ...args) => {
+    console.error(`ERROR: ${message}`, ...args)
+}
+
+export const logWarn = (message, ...args) => {
+    console.warn(`WARNING: ${message}`, ...args)
+}
+
+export const logInfo = (message, ...args) => {
+    console.info(`INFO: ${message}`, ...args)
+}
+
+export const logDebug = (message, ...args) => {
+    console.debug(`DEBUG: ${message}`, ...args)
+}
+
+export const logVerbose = (message, ...args) => {
+    console.verbose(`VERBOSE: ${message}`, ...args)
+}
+
+export const logTrace = (message, ...args) => {
+    console.trace(`TRACE: ${message}`, ...args)
+}
+
+export const EmptyDirectory = (path) => {
+    if (!fs.existsSync(path)) return true;
+    const files = fs.readdirSync(path);
+    return (files.length === 0);
+}
+
+const CleanFileSystemName = (str) => {
+    return str.replace(/[\\/:*?\"<>|]/g, '').substring(0, 240)
+}
+
+export const Unquoted = (str) => {
+    return str.replace(/^(")(.*)(")$/g, '$2')
+}
+
+export const Exists = (pathRoot, pathName) => {
+    if (pathName !== undefined) {
+        return fs.existsSync(path.join(pathRoot, pathName));
+    } else {
+        return fs.existsSync(pathRoot);
+    }
+}
+
 export const getFiles = (rootDir) => {
     const results = []
     const files = fs.readdirSync(rootDir);
     for (const file of files) {
-        results.push({file, filePath: path.join(rootDir, file), directory: rootDir})
+        results.push({
+            file,
+            filePath: path.join(rootDir, file),
+            directory: rootDir
+        })
     }
     return results;
 }
@@ -25,6 +75,10 @@ export const getMostRecentFile = (rootDir) => {
     return maxFile.filePath;
 }
 
+export const AbortError = (message) => {
+    console.error(`ERROR: ABORTING EXECUTION because ${message}`);
+    process.exit(1);
+}
 
 export const AbortException = (message, exception) => {
     console.error(`ERROR: ${message} because ${exception}`);
@@ -63,14 +117,27 @@ export const LoadJSON = (root, file, defaultValues) => {
     }
 }
 
+export const MkDir = (rootDirectory, ifNotExists) => {
+    try {
+        if (ifNotExists) {
+            if (fs.existsSync(rootDirectory)) {
+                return;
+            }
+        }
+        fs.mkdirSync(rootDirectory);
+        return rootDirectory;
+    } catch (error) {
+        AbortException(`Failed to make directory: ${path}`, error);
+    }
+}
 
-export const MkDir = (rootDirectory, filePath, ignoreErrors) => {
+export const MkDirPaths = (rootDirectory, filePath, ifNotExists) => {
     let dirPath = rootDirectory;
     try {
         if (filePath !== undefined) {
             dirPath = path.join(rootDirectory, filePath);
         }
-        if (ignoreErrors) {
+        if (ifNotExists) {
             if (fs.existsSync(dirPath)) {
                 return;
             }
@@ -78,7 +145,7 @@ export const MkDir = (rootDirectory, filePath, ignoreErrors) => {
         fs.mkdirSync(dirPath);
         return dirPath;
     } catch (error) {
-        if (ignoreErrors) {
+        if (ifNotExists) {
             console.warn(`WARNING: Error creating ${dirPath} (bypass OK)`);
         } else {
             AbortException(`Failed to make directory: ${path}`, error);

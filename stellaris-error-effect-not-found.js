@@ -2,8 +2,7 @@
 // phase: load
 
 
-import { conf } from './stellaris-conf.js'
-import { takeMatches } from './core-match.js'
+import { emitErrorOnExpression } from './core-match.js'
 
 const expr = /^Error in (?<effect_name>.*) effect, Could not find planet or randomlist with key: (?<missing_key_name>.*) .* file\: (?<file>.*)$/
 emitErrorOnExpression(expr)

@@ -6,5 +6,13 @@
         "**/CVS": true,
         "**/.DS_Store": true,
         "**/node_modules": true
-    }
+    },
+    "eslint.format.enable": true,
+    "eslint.lintTask.enable": true,
+    "eslint.probe": [
+        "javascript",
+        "typescript",
+        "html",
+        "markdown"
+    ]
 }

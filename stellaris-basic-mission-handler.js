@@ -1,7 +1,6 @@
 export class BasicMissionHandler  {
 
     constructor() {
-
     }
 
     Start = (lineMeta) => {

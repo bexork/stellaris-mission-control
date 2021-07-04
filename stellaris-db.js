@@ -41,10 +41,10 @@ export const getPlayset = async ({
     return new Promise(async (resolve, reject) => {
         try {
             let sql = '';
-            const condition = (playsetName !== undefined) 
-                ? ` and p.name = '${playsetName}' ` 
-                : (playsetId !== undefined) 
-                    ? ` and p.playsetId = '${playsetId}' ` 
+            const condition = (playsetName !== undefined)
+                ? ` and p.name = '${playsetName}' `
+                : (playsetId !== undefined)
+                    ? ` and p.playsetId = '${playsetId}' `
                     : ` and p.isActive = true `;
             // TODO: move to parameterized prepared queries to prevent SQL
             // injection if we ever host this for the public
@@ -53,7 +53,7 @@ export const getPlayset = async ({
                             join mods m on pm.modId = m.id
                             where pm.enabled and status = 'ready_to_play' ${condition}
                             order by pm.position;`;
-            
+
             const results = await execQuery(sql);
             resolve(results);
         } catch (error) {
@@ -70,8 +70,8 @@ export const getAllReadyToPlay = async () => {
     return new Promise(async (resolve, reject) => {
         try {
             let sql = `select m.* from mods m
-                                where status = "ready_to_play"
-                                order by displayName desc;`;
+                        where status = "ready_to_play"
+                        order by displayName desc;`;
             const results = await execQuery(sql);
             WriteJSON(INDEX_ROOT_CRUNCH, `${playsetName}-crunch-playlist.json`, results);
             resolve(results);
