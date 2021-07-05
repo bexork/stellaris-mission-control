@@ -18,7 +18,7 @@ export const logDebug = (message, ...args) => {
 }
 
 export const logVerbose = (message, ...args) => {
-    console.verbose(`VERBOSE: ${message}`, ...args)
+    console.log(`VERBOSE: ${message}`, ...args)
 }
 
 export const logTrace = (message, ...args) => {
@@ -31,7 +31,7 @@ export const EmptyDirectory = (path) => {
     return (files.length === 0);
 }
 
-const CleanFileSystemName = (str) => {
+export const CleanFileSystemName = (str) => {
     return str.replace(/[\\/:*?\"<>|]/g, '').substring(0, 240)
 }
 
@@ -153,16 +153,16 @@ export const MkDirPaths = (rootDirectory, filePath, ifNotExists) => {
     }
 }
 
-const MkSym = (from, to, type, ignoreErrors) => {
+export const MkSym = (from, to, type, ifNotExists) => {
     try {
-        if (ignoreErrors) {
+        if (ifNotExists) {
             if (fs.existsSync(to)) {
                 return;
             }
         }
         fs.symlinkSync(from, path.normalize(to), type);
     } catch (error) {
-        if (!ignoreErrors) {
+        if (!ifNotExists) {
             AbortException(`Failed to make Symlink: ${from} to ${to} of type ${type}`, error);
         } else {
             console.warn(`WARNING: error creating symlink error: ${error.message} from ${from} to ${to} of type ${type}`);

@@ -1,0 +1,18 @@
+https://api.steampowered.com/<interface>/<method>/v<version>/
+
+
+POST https://api.steampowered.com/ISteamRemoteStorage/GetPublishedFileDetails/v1/
+HTTP/1.1
+content-type: application/json
+
+{
+    "name": "sample",
+    "time": "Wed, 21 Oct 2015 18:27:50 GMT"
+}
+
+
+GET https://api.steampowered.com/IPublishedFileService/QueryFiles/v1/ HTTP/1.1
+
+
+var SteamWebAPI = require('@doctormckay/steam-webapi');
+var api = new SteamWebAPI("yourapikey", "192.168.0.5");
