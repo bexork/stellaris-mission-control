@@ -4,10 +4,11 @@
   root:
   launcher:
     executable: AppData/Local/Programs/Paradox Interactive/launcher/launcher-v2.2021.6/Paradox Launcher.exe
-    root: 
-  documents: 
+    root:
+  documents:
     root: Documents/Paradox Interactive/Stellaris
     db: launcher-v2.sqlite
-    logs: logs    
+    logs: logs
     mods: mods
     crashes: crashes
+  imageMagickConvert: C:/ImageMagick710Q16HDRI-x64/convert

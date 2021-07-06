@@ -8,7 +8,6 @@ export const takeMatches = (expression, meta, lineFragment) => {
             if (!meta.subjects) meta.subjects = {}
             meta.subjects[namedCaptureGroup] = matches.groups[namedCaptureGroup]
         }
-        console.log(`TAKE_MATCH: ${EncodeJSON(meta)}`)
         return true
     }
 }

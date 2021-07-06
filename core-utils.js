@@ -113,6 +113,14 @@ export const AbortException = (message, exception) => {
     process.exit(1);
 }
 
+export const WriteFile = (file, data) => {
+    try {
+        fs.writeFileSync(file, data);
+    } catch (exception) {
+        AbortException(`Failed to write ${file}`, exception);
+    }
+}
+
 export const WriteJSON = (root, file, object) => {
     try {
         fs.writeFileSync(path.join(root, file), EncodeJSON(object), 'utf8');
