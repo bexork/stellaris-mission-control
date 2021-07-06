@@ -1,4 +1,5 @@
-import { EncodeJSON } from "./core-utils.js";
+import { conf } from './stellaris-conf.js'
+import { EncodeJSON } from "./core-utils.js"
 
 export const takeMatches = (expression, meta, lineFragment) => {
     const matches = expression.exec(lineFragment.trim());

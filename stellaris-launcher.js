@@ -3,7 +3,7 @@ import { spawn } from 'child_process'
 
 import { conf } from './stellaris-conf.js'
 import { LoadJSON } from './core-utils.js'
-import { getPlaysetSync } from './stellaris-db.js'
+import { getPlayset } from './stellaris-db.js'
 import { getMostRecentFile } from './core-utils.js'
 
 const defaults = {
@@ -15,7 +15,7 @@ const defaults = {
 
 export const mods_registry = LoadJSON(defaults.cwd, 'mods_registry.json');
 export const game_data = LoadJSON(defaults.cwd, 'game_data.json');
-export const playset = getPlaysetSync();
+export const playset = getPlayset();
 
 export const StellarisLauncher = (options) => {
   const launchOpts = { ...defaults, ...options }

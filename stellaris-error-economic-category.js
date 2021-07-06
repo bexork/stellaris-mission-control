@@ -2,7 +2,7 @@
 // phase: load
 
 
-import { emitErrorOnExpression } from './core-match.js'
+import { emitErrorOnExpression } from './core-events.js'
 
 const expr = /^Economic Category: (?<economic_category>.*). Generated 'mult' modifiers for table (?<table_name>.*) is never used from script.$/
 emitErrorOnExpression(expr)

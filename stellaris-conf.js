@@ -19,9 +19,8 @@ const USER_HOME = process.env[(process.platform == 'win32') ? 'USERPROFILE' : 'H
 conf.events = new EventEmitter()
 conf.root = path.dirname(conf.executable)
 
-
 if (conf.launcher !== undefined) {
-    conf.launcher.executable = path.join(conf.USER_HOME, conf.launcher.executable)
+    conf.launcher.executable = path.join(USER_HOME, conf.launcher.executable)
     conf.launcher.root = path.dirname(conf.launcher.executable)
 }
 

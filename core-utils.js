@@ -1,5 +1,6 @@
-import fs from 'fs';
-import path from 'path';
+import fs from 'fs'
+import path from 'path'
+
 
 export const logError = (message, ...args) => {
     console.error(`ERROR: ${message}`, ...args)
@@ -18,7 +19,7 @@ export const logDebug = (message, ...args) => {
 }
 
 export const logVerbose = (message, ...args) => {
-    console.log(`VERBOSE: ${message}`, ...args)
+    // console.log(`VERBOSE: ${message}`, ...args)
 }
 
 export const logTrace = (message, ...args) => {
@@ -47,21 +48,30 @@ export const Exists = (pathRoot, pathName) => {
     }
 }
 
-export const getFiles = (rootDir) => {
-    const results = []
-    const files = fs.readdirSync(rootDir);
+export const getFiles = (rootDir, pathFragment = undefined) => {
+    const results  = []
+    const fullRoot = path.join(rootDir, pathFragment !== undefined ? pathFragment : '')
+    const files    = fs.readdirSync(fullRoot);
     for (const file of files) {
         results.push({
             file,
-            filePath: path.join(rootDir, file),
-            directory: rootDir
+            filePath: path.join(fullRoot, file),
+            directory: fullRoot
         })
     }
     return results;
 }
 
-export const getMostRecentFile = (rootDir) => {
-    const files = getFiles(rootDir);
+export const getFileSystemType = (rootPath) => {
+    const stat = fs.statSync(rootPath)
+    if (stat.isDirectory(rootPath))       { return 'dir' }
+    if (stat.isFile(rootPath))            { return 'file' }
+    if (stat.isSymbolicLink(rootPath))    { return 'sym' }
+    throw new Error('Unacceptable FileSystemType encountered when scrounging through the file system')
+}
+
+export const getMostRecentFile = (rootDir, inFiles) => {
+    const files = !inFiles ? getFiles(rootDir) : inFiles;
     let maxmtime = 0;
     let maxFile;
 
@@ -75,8 +85,19 @@ export const getMostRecentFile = (rootDir) => {
     return maxFile.filePath;
 }
 
+export const DeleteChildDirs = (root) => {
+    // try {
+    //     let files = getFiles(root)
+    //     for (const f of files) {
+
+    //     }            
+    // } catch (err) {
+    //     AbortException(`Failed to DeleteChildDirs ${root} because ${err.message}`)
+    // }
+}
+
 export const AbortError = (message) => {
-    console.error(`ERROR: ABORTING EXECUTION because ${message}`);
+    console.error(`ERROR: ABORTING EXECUTION because ${message}`)
     process.exit(1);
 }
 
@@ -139,7 +160,7 @@ export const MkDirPaths = (rootDirectory, filePath, ifNotExists) => {
         }
         if (ifNotExists) {
             if (fs.existsSync(dirPath)) {
-                return;
+                return dirPath;
             }
         }
         fs.mkdirSync(dirPath);
@@ -157,6 +178,7 @@ export const MkSym = (from, to, type, ifNotExists) => {
     try {
         if (ifNotExists) {
             if (fs.existsSync(to)) {
+                logWarn(`Not making symbolic link because it exists: ${to} `)
                 return;
             }
         }

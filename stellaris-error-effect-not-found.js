@@ -2,7 +2,7 @@
 // phase: load
 
 
-import { emitErrorOnExpression } from './core-match.js'
+import { emitErrorOnExpression } from './core-events.js'
 
 const expr = /^Error in (?<effect_name>.*) effect, Could not find planet or randomlist with key: (?<missing_key_name>.*) .* file\: (?<file>.*)$/
 emitErrorOnExpression(expr)
