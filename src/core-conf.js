@@ -3,10 +3,11 @@ import EventEmitter from 'events'
 
 import { readSync } from "node-yaml"
 
-import { AbortError, Exists } from '../starkeeper.core/core-utils.js'
-import { getFiles } from '../starkeeper.core/core-utils.js'
+import { AbortError, Exists } from './core-utils.js'
+import { getFiles } from './core-utils.js'
 
-const configFile = path.join(process.cwd(), './mission-control.yaml');
+const configFile = path.join(process.cwd(), './.mission-control.yaml');
+console.log(configFile)
 if (!Exists(configFile)) {
     AbortError("Misson Control File is Missing. We cannot launch without Mission Control!")
 }

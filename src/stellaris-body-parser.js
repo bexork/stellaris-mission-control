@@ -1,5 +1,5 @@
 import { takeMatches } from './core-match.js'
-import { conf } from './stellaris-conf.js'
+import { conf } from './core-conf.js'
 import { EncodeJSON } from './core-utils.js'
 
 const StellarisBodyParser = (newLine) => {

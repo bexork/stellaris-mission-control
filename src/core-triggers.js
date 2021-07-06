@@ -1,11 +1,4 @@
-import { emitErrorOnExpression } from './core-events.js'
-
-// [15:04:56][component.cpp:483]: Country Tranquil Luganid Syndicate cannot build any component in the component set thruster_components for design Temp fe_ships_goliath
-// [15:04:56][component.cpp:483]: Country Tranquil Luganid Syndicate cannot build any component in the component set combat_computers for design Temp fe_ships_goliath
-// [15:04:56][component.cpp:483]: Country Tranquil Luganid Syndicate cannot build any component in the component set power_core for design Temp fe_ships_small_station
-// [15:04:56][component.cpp:483]: Country Tranquil Luganid Syndicate cannot build any component in the component set power_core for design Temp fe_ships_large_station
-// [15:04:56][component.cpp:483]: Country Tranquil Luganid Syndicate cannot build any component in the component set power_core for design Temp RA Battleship I
-
+import { startRule } from './core-events.js'
 
 const triggers = [{
         category: 'CustomShipDesignError',
@@ -40,7 +33,7 @@ const triggers = [{
         phase: 'game-start',
         sev: 2,
         hits: []
-    },git
+    },
     {
         category: 'FailedToAddDistrict',
         expr: /.*[cursed|cursed_|Cursed_|CURSE].*/,
@@ -50,3 +43,7 @@ const triggers = [{
     }
 
 ]
+
+for(const trigger of triggers) {
+    startRule(trigger)
+}
