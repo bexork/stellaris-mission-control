@@ -3,8 +3,8 @@ import EventEmitter from 'events'
 
 import { readSync } from "node-yaml"
 
-import { AbortError, Exists } from './core-utils.js'
-import { getFiles } from './core-utils.js'
+import { AbortError, Exists } from '../starkeeper.core/core-utils.js'
+import { getFiles } from '../starkeeper.core/core-utils.js'
 
 const configFile = path.join(process.cwd(), './mission-control.yaml');
 if (!Exists(configFile)) {

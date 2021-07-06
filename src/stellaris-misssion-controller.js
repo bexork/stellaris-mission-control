@@ -1,4 +1,4 @@
-import { conf } from './stellaris-conf.js'
+import { conf } from './core-conf.js'
 import { BasicMissionHandler } from './stellaris-basic-mission-handler.js'
 
 

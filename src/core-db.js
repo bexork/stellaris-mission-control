@@ -1,5 +1,5 @@
 import { AbortException } from './core-utils.js'
-import { conf } from './stellaris-conf.js'
+import { conf } from '../starkeeper-mission-control/stellaris-conf.js/index.js'
 
 import SQLITE3DB from 'better-sqlite3'
 

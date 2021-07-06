@@ -1,4 +1,4 @@
-import { conf } from './stellaris-conf.js'
+import { conf } from '../starkeeper-mission-control/stellaris-conf.js/index.js'
 import { EncodeJSON } from "./core-utils.js"
 
 export const takeMatches = (expression, meta, lineFragment) => {
