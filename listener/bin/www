@@ -6,7 +6,7 @@ var http = require('http');
 /**
  * Module dependencies.
  */
-function MissionControlServer(options) {
+function MissionControlServer() {
 
   /**
    * Get port from environment and store in Express.
@@ -14,7 +14,6 @@ function MissionControlServer(options) {
 
   var port = normalizePort(process.env.PORT || '8666');
   app.set('port', port);
-  app.set('missionControl', options)
   /**
    * Create HTTP server.
    */

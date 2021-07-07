@@ -1,6 +1,5 @@
-import { AbortError } from '../core-utils';
-
-const server = import('./bin/wwww')
+import { AbortError } from './core-utils';
+import { conf } from '.core-conf.js';
 
 // register event listener for mission-control-ready app.
 // Then start listening for commands on the command channel
@@ -10,6 +9,7 @@ const server = import('./bin/wwww')
 export class MissionControlCommandServer {
   constructor() {
     this.commands = []
+    conf.events.on()
   }
 
   AddCommand(command) {
@@ -17,6 +17,7 @@ export class MissionControlCommandServer {
   }
 
   Start() {
+    import server from ('./listener/bin/wwww')
     server.MissionControlServerMain({
       nextCommand: (request) => {
         // only use request to find out who it is.

@@ -1,8 +1,7 @@
 https://api.steampowered.com/<interface>/<method>/v<version>/
 
 
-POST https://api.steampowered.com/ISteamRemoteStorage/GetPublishedFileDetails/v1/
-HTTP/1.1
+POST https://api.steampowered.com/ISteamRemoteStorage/GetPublishedFileDetails/v1/ HTTP/1.1
 content-type: application/json
 
 {

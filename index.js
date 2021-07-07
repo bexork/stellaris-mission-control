@@ -1,5 +1,4 @@
 import { conf } from './core-conf.js'
-import { takeMatches } from './core-match.js'
 
 // listeners
 // import './stellaris-error-country-cannot-build-any-component.js'
@@ -15,6 +14,7 @@ import { StellarisLogMonitor } from './core-log-tail.js'
 import { StellarisLauncher } from './stellaris-launcher.js'
 
 StellarisLogMonitor(conf.documents.logFiles.error)
+StellarisLogMonitor(conf.documents.logFiles.game)
 StellarisLauncher({})
 console.log("🚀🚀🚀 Stellaris Mission Control Operations Active 🚀🚀🚀 ")
 console.log("🚀🚀🚀 Good Luck and Enjoy the Game! 🚀🚀🚀 ")

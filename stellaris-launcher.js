@@ -18,8 +18,10 @@ export const game_data = LoadJSON(defaults.cwd, 'game_data.json');
 export const playset = getPlayset();
 
 export const StellarisLauncher = (options) => {
+
   const launchOpts = { ...defaults, ...options }
   const process = spawn(conf.executable, launchOpts);
+
   process.on('close', (code, signal) => {
     console.log(`INFO: close ${conf.executable} closed with code ${code} and signal of ${signal}.`);
   });

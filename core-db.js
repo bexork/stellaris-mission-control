@@ -6,7 +6,7 @@ import SQLITE3DB from 'better-sqlite3'
 console.log(`INFO: Opening Database: ${conf.documents.db}`)
 const db = new SQLITE3DB(conf.documents.db, {})
 
-/** 
+/**
  * Get playset from stellaris launcher database.
  * default is to get the active playset,
  * otherwise pass a playsetName or playsetId in options.

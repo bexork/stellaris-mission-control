@@ -12,3 +12,4 @@
     mods: mods
     crashes: crashes
   imageMagickConvert: C:/ImageMagick710Q16HDRI-x64/convert
+  output:
