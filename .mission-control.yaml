@@ -11,5 +11,5 @@
     logs: logs
     mods: mods
     crashes: crashes
-  imageMagickConvert: C:/ImageMagick710Q16HDRI-x64/convert
+  imageMagickHome: C:/ImageMagick710Q16HDRI-x64
   output:

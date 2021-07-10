@@ -8,6 +8,7 @@ const moo = () => { }
 export const StellarisLogMonitor = (logFile) => {
   let lines = []
   let lastErr = 0
+  console.log(`Monitoring File: ${logFile}`)
   if (!tails[logFile]) {
     const logTail = new Tail(logFile);
 

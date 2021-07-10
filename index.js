@@ -14,7 +14,9 @@ import { StellarisLogMonitor } from './core-log-tail.js'
 import { StellarisLauncher } from './stellaris-launcher.js'
 
 StellarisLogMonitor(conf.documents.logFiles.error)
+
 StellarisLogMonitor(conf.documents.logFiles.game)
-StellarisLauncher({})
+
+// StellarisLauncher({})
 console.log("🚀🚀🚀 Stellaris Mission Control Operations Active 🚀🚀🚀 ")
 console.log("🚀🚀🚀 Good Luck and Enjoy the Game! 🚀🚀🚀 ")
